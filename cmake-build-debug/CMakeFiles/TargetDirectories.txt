@@ -1,0 +1,3 @@
+/Users/phcardoso/CLionProjects/algoritmos_rasterizacao/cmake-build-debug/CMakeFiles/algoritmos_rasterizacao.dir
+/Users/phcardoso/CLionProjects/algoritmos_rasterizacao/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/phcardoso/CLionProjects/algoritmos_rasterizacao/cmake-build-debug/CMakeFiles/rebuild_cache.dir
