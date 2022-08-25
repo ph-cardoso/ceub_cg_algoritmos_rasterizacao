@@ -3,7 +3,7 @@
 
 #define X_AXIS_SIZE 40
 #define Y_AXIS_SIZE 80
-#define PIXEL_CHAR '*'
+#define PIXEL_CHAR 42
 
 using namespace std;
 
@@ -26,11 +26,9 @@ void printMenuOptions() {
             " (0) - Sair\n"
             " (1) - Imprime uma reta (Algoritmo DDA)\n"
             " (2) - Imprime uma reta (Algoritmo de Bresenham)\n"
-            " (3) - Imprime polilinhas formando um polígono (Algoritmo DDA)\n"
-            " (4) - Imprime polilinhas formando um polígono (Algoritmo de Bresenham)\n"
-            " (5) - Imprime o traçado de um círculo (Teorema de Pitágoras)\n"
-            " (6) - Imprime o traçado de um círculo (Sistemas de coordenadas polares)\n"
-            " (7) - Imprime o traçado de um círculo (Algoritmo de Bresenham)\n";
+            " (3) - Imprime o traçado de um círculo (Teorema de Pitágoras)\n"
+            " (4) - Imprime o traçado de um círculo (Sistemas de coordenadas polares)\n"
+            " (5) - Imprime o traçado de um círculo (Algoritmo de Bresenham)\n" << endl;
 }
 
 int askUserOption() {
@@ -40,26 +38,16 @@ int askUserOption() {
     return input;
 }
 
-void printCartesianPlane(char* matriz) {
-    printf("\n");
+void printCartesianPlane() {
 
-    for (int i = 0; i < X_AXIS_SIZE; ++i) {
-        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
-            printf("%c", matriz[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\n");
 }
 
-char* initCartesianPlane() {
+void initCartesianPlane() {
     char matriz[X_AXIS_SIZE][Y_AXIS_SIZE];
-    char* pMatriz = &matriz[0][0];
 
     for (int i = 0; i < X_AXIS_SIZE; ++i) {
         for (int j = 0; j < Y_AXIS_SIZE; ++j) {
-            matriz[i][j] = '*';
+            matriz[i][j] = char(PIXEL_CHAR);
 
             if (i == X_AXIS_SIZE/2){
                 matriz[i][j] = char(45);
@@ -75,7 +63,16 @@ char* initCartesianPlane() {
         }
     }
 
-    return pMatriz;
+    printf("\n");
+
+    for (int i = 0; i < X_AXIS_SIZE; ++i) {
+        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
+            printf("%c", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n");
 }
 
 void waitEnterKeyToContinue() {
@@ -85,8 +82,6 @@ void waitEnterKeyToContinue() {
 }
 
 int init() {
-    char* matriz = initCartesianPlane();
-
     while(true){
         clearConsole();
         printMenuOptions();
@@ -94,7 +89,7 @@ int init() {
             case 0:
                 return 0;
             case 1:
-                printCartesianPlane(matriz);
+                initCartesianPlane();
                 waitEnterKeyToContinue();
                 break;
             case 2:
@@ -108,12 +103,6 @@ int init() {
                 break;
             case 5:
                 cout << "Caso 5\n";
-                break;
-            case 6:
-                cout << "Caso 6\n";
-                break;
-            case 7:
-                cout << "Caso 7\n";
                 break;
             default:
                 cout << "\nEssa opcao nao pode ser executada. Tente inserir uma opcao válida...\n";
