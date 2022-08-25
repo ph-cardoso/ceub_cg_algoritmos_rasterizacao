@@ -4,6 +4,7 @@
 #define X_AXIS_SIZE 40
 #define Y_AXIS_SIZE 80
 #define PIXEL_CHAR 42
+#define SPACE_CHAR ' '
 
 using namespace std;
 
@@ -38,31 +39,7 @@ int askUserOption() {
     return input;
 }
 
-void printCartesianPlane() {
-
-}
-
-void initCartesianPlane() {
-    char matriz[X_AXIS_SIZE][Y_AXIS_SIZE];
-
-    for (int i = 0; i < X_AXIS_SIZE; ++i) {
-        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
-            matriz[i][j] = char(PIXEL_CHAR);
-
-            if (i == X_AXIS_SIZE/2){
-                matriz[i][j] = char(45);
-            }
-
-            if (j == Y_AXIS_SIZE/2){
-                matriz[i][j] = '|';
-            }
-
-            if (i == X_AXIS_SIZE/2 && j == Y_AXIS_SIZE/2){
-                matriz[i][j] = '+';
-            }
-        }
-    }
-
+void printCartesianPlane(char **matriz) {
     printf("\n");
 
     for (int i = 0; i < X_AXIS_SIZE; ++i) {
@@ -75,6 +52,35 @@ void initCartesianPlane() {
     printf("\n");
 }
 
+char** generateDinamicMatrix() {
+    char **mat = static_cast<char **>(malloc(X_AXIS_SIZE * sizeof(char *)));
+    for (int i = 0; i < X_AXIS_SIZE; ++i) {
+        mat[i] = static_cast<char *>(malloc(Y_AXIS_SIZE * sizeof(char)));
+    }
+
+    return mat;
+}
+
+void cleanCartesianPlane(char** matriz) {
+    for (int i = 0; i < X_AXIS_SIZE; ++i) {
+        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
+            matriz[i][j] = char(SPACE_CHAR);
+
+            if (i == X_AXIS_SIZE / 2) {
+                matriz[i][j] = char(45);
+            }
+
+            if (j == Y_AXIS_SIZE / 2) {
+                matriz[i][j] = '|';
+            }
+
+            if (i == X_AXIS_SIZE / 2 && j == Y_AXIS_SIZE / 2) {
+                matriz[i][j] = '+';
+            }
+        }
+    }
+}
+
 void waitEnterKeyToContinue() {
     cout << "Press ENTER to continue..." << endl;
     clearInputBuffer();
@@ -82,6 +88,7 @@ void waitEnterKeyToContinue() {
 }
 
 int init() {
+    char **matriz = generateDinamicMatrix();
     while(true){
         clearConsole();
         printMenuOptions();
@@ -89,7 +96,8 @@ int init() {
             case 0:
                 return 0;
             case 1:
-                initCartesianPlane();
+                cleanCartesianPlane(matriz);
+                printCartesianPlane(matriz);
                 waitEnterKeyToContinue();
                 break;
             case 2:
