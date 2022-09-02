@@ -1,6 +1,6 @@
 #include <iostream>
 #include "utils/utils.h"
-#include "bresenham/bresenham_line.h"
+#include "bresenham_line/bresenham_line.h"
 
 using namespace std;
 

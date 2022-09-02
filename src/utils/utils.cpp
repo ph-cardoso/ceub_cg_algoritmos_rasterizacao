@@ -84,7 +84,7 @@ void waitEnterKeyToContinue() {
 
 void insertPixel(int y, int x, char** matriz) {
     int xPos;
-    int yPos = 0;
+    int yPos;
 
     if(x >= 0) {
         xPos = X_AXIS_SIZE - (x + (X_AXIS_SIZE / 2));
