@@ -2,19 +2,6 @@
 #include "../utils/utils.h"
 #include <iostream>
 
-using namespace std;
-
-void askCoordenadas(int* choice) {
-    cout << "Insira a coordenada do ponto x1: ";
-    cin >> choice[0];
-    cout << "Insira a coordenada do ponto y1: ";
-    cin >> choice[1];
-    cout << "Insira a coordenada do ponto x2: ";
-    cin >> choice[2];
-    cout << "Insira a coordenada do ponto y2: ";
-    cin >> choice[3];
-}
-
 void bresenham_line(int x1, int y1, int x2, int y2, char** matriz) {
     int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 
@@ -39,7 +26,7 @@ void bresenham_line(int x1, int y1, int x2, int y2, char** matriz) {
         }
 
         insertPixel(x, y, matriz);
-        cout << "(" << x << "," << y << ")" << endl;
+//        cout << "(" << x << "," << y << ")" << endl;
 
         for(i = 0; x < xe; i++) {
             x = x + 1;
@@ -57,7 +44,7 @@ void bresenham_line(int x1, int y1, int x2, int y2, char** matriz) {
             }
 
             insertPixel(x, y, matriz);
-            cout << "(" << x << "," << y << ")" << endl;
+//            cout << "(" << x << "," << y << ")" << endl;
         }
     } else {
         if( dy >= 0) {
@@ -71,7 +58,7 @@ void bresenham_line(int x1, int y1, int x2, int y2, char** matriz) {
         }
 
         insertPixel(x, y, matriz);
-        cout << "(" << x << "," << y << ")" << endl;
+//        cout << "(" << x << "," << y << ")" << endl;
 
         for(i = 0; y < ye; i++) {
             y = y + 1;
@@ -89,7 +76,7 @@ void bresenham_line(int x1, int y1, int x2, int y2, char** matriz) {
             }
 
             insertPixel(x, y, matriz);
-            cout << "(" << x << "," << y << ")" << endl;
+//            cout << "(" << x << "," << y << ")" << endl;
         }
     }
 }

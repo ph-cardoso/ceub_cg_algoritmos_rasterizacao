@@ -100,3 +100,23 @@ void insertPixel(int y, int x, char** matriz) {
 
     matriz[xPos][yPos] = char(PIXEL_CHAR);
 }
+
+void askCoordenadas(int* choice) {
+    cout << "Insira a coordenada do ponto x1: ";
+    cin >> choice[0];
+    cout << "Insira a coordenada do ponto y1: ";
+    cin >> choice[1];
+    cout << "Insira a coordenada do ponto x2: ";
+    cin >> choice[2];
+    cout << "Insira a coordenada do ponto y2: ";
+    cin >> choice[3];
+}
+
+void askCircleParams(int* choice) {
+    cout << "Insira a coordenada do ponto x_centro: ";
+    cin >> choice[0];
+    cout << "Insira a coordenada do ponto y_centro: ";
+    cin >> choice[1];
+    cout << "Insira o tamanho do raio: ";
+    cin >> choice[2];
+}

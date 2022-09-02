@@ -17,3 +17,6 @@ char** generateDinamicMatrix();
 void cleanCartesianPlane(char**);
 void waitEnterKeyToContinue();
 void insertPixel(int, int, char**);
+void askCircleParams(int*);
+void askCoordenadas(int*);
+
