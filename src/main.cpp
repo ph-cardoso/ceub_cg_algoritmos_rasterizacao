@@ -1,6 +1,7 @@
 #include <iostream>
 #include "utils/utils.h"
 #include "bresenham_line/bresenham_line.h"
+#include "dda_line/dda_line.h"
 #include "bresenham_circle/bresenham_circle.h"
 #include "polar_coordinate_circle/polar_coordinate_circle.h"
 
@@ -21,6 +22,7 @@ int init() {
             case 1:
                 // Linha com DDA
                 cleanCartesianPlane(matriz);
+                useDDALine(matriz);
                 printCartesianPlane(matriz);
                 waitEnterKeyToContinue();
                 break;
