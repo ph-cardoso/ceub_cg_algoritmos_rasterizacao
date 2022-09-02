@@ -100,10 +100,7 @@ void insertPixel(int y, int x, char** matriz) {
     }
 
     matriz[xPos][yPos] = char(PIXEL_CHAR);
-
-    if(PRINT_COORDINATES_FLAG) {
-        cout << "(" << x << "," << y << ")" << endl;
-    }
+    cout << "(" << x << "," << y << ")" << endl;
 }
 
 void askCoordenadas(int* choice) {

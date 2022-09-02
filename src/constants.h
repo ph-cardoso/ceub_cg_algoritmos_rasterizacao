@@ -5,6 +5,5 @@
 #define Y_AXIS_SIZE 80 // + 40 | - 40
 #define PIXEL_CHAR 42
 #define SPACE_CHAR ' '
-#define PRINT_COORDINATES_FLAG true
 
 #endif //ALGORITMOS_RASTERIZACAO_CONSTANTS_H

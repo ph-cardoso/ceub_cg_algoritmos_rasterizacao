@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-narrowing-conversions"
+#pragma ide diagnostic ignored "bugprone-integer-division"
 #include <cmath>
 #include "dda_line.h"
 #include "../utils/utils.h"
@@ -18,12 +21,14 @@ void dda_line(int x1, int y1, int x2, int y2, char** matriz) {
     }
 
     // incremento de x e y
-    float x_incr = (float)dx / step;
-    float y_incr = (float)dy / step;
+    float x_incr, y_incr;
+    x_incr = static_cast<float>(dx / step);
+    y_incr = static_cast<float>(dy / step);
 
     // ponto inicial
-    float x = x1;
-    float y = y1;
+    float x, y;
+    x = static_cast<float>(x1);
+    y = static_cast<float>(y1);
 
     // loop de inserção
     for (int i = 0; i < step; i ++) {
@@ -43,3 +48,5 @@ void useDDALine(char** matriz) {
 
     dda_line(x1, y1, x2, y2, matriz);
 }
+
+#pragma clang diagnostic pop
