@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "../constants.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -99,6 +100,10 @@ void insertPixel(int y, int x, char** matriz) {
     }
 
     matriz[xPos][yPos] = char(PIXEL_CHAR);
+
+    if(PRINT_COORDINATES_FLAG) {
+        cout << "(" << x << "," << y << ")" << endl;
+    }
 }
 
 void askCoordenadas(int* choice) {
@@ -119,4 +124,16 @@ void askCircleParams(int* choice) {
     cin >> choice[1];
     cout << "Insira o tamanho do raio: ";
     cin >> choice[2];
+}
+
+void drawSimetricPixels(int xc, int yc, int x, int y, char** matriz) {
+    // Inserção dos pixels nas 8 octantes por simetria
+    insertPixel(xc + x, yc + y, matriz);
+    insertPixel(xc - x, yc + y, matriz);
+    insertPixel(xc + x, yc - y, matriz);
+    insertPixel(xc - x, yc - y, matriz);
+    insertPixel(xc + y, yc + x, matriz);
+    insertPixel(xc - y, yc + x, matriz);
+    insertPixel(xc + y, yc - x, matriz);
+    insertPixel(xc - y, yc - x, matriz);
 }

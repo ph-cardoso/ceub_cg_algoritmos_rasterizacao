@@ -1,18 +1,6 @@
 #include "bresenham_circle.h"
 #include "../utils/utils.h"
 
-void drawSimetricPixels(int xc, int yc, int x, int y, char** matriz) {
-    // Inserção dos pixels nas 8 octantes por simetria
-    insertPixel(xc + x, yc + y, matriz);
-    insertPixel(xc - x, yc + y, matriz);
-    insertPixel(xc + x, yc - y, matriz);
-    insertPixel(xc - x, yc - y, matriz);
-    insertPixel(xc + y, yc + x, matriz);
-    insertPixel(xc - y, yc + x, matriz);
-    insertPixel(xc + y, yc - x, matriz);
-    insertPixel(xc - y, yc - x, matriz);
-}
-
 void bresenham_circle(int xc, int yc, int r, char** matriz) {
     int x = 0, y = r;
     int d = 3 - 2 * r;

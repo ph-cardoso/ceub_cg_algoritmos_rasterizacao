@@ -2,6 +2,7 @@
 #include "utils/utils.h"
 #include "bresenham_line/bresenham_line.h"
 #include "bresenham_circle/bresenham_circle.h"
+#include "polar_coordinate_circle/polar_coordinate_circle.h"
 
 using namespace std;
 
@@ -33,10 +34,7 @@ int init() {
             case 3:
                 // Círculo com Coordenadas Polares
                 cleanCartesianPlane(matriz);
-                insertPixel(4, 4, matriz);
-                insertPixel(4, -4, matriz);
-                insertPixel(-4, 4, matriz);
-                insertPixel(-4, -4, matriz);
+                usePolarCoordinateCircle(matriz);
                 printCartesianPlane(matriz);
                 waitEnterKeyToContinue();
                 break;

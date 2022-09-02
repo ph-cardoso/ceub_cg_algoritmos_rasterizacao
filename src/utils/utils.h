@@ -1,13 +1,6 @@
 #ifndef ALGORITMOS_RASTERIZACAO_UTILS_H
 #define ALGORITMOS_RASTERIZACAO_UTILS_H
 
-#endif //ALGORITMOS_RASTERIZACAO_UTILS_H
-
-#define X_AXIS_SIZE 40 // + 20 | - 20
-#define Y_AXIS_SIZE 80 // + 40 | - 40
-#define PIXEL_CHAR 42
-#define SPACE_CHAR ' '
-
 void clearInputBuffer();
 void clearConsole();
 void printMenuOptions();
@@ -19,4 +12,6 @@ void waitEnterKeyToContinue();
 void insertPixel(int, int, char**);
 void askCircleParams(int*);
 void askCoordenadas(int*);
+void drawSimetricPixels(int, int, int, int, char**);
 
+#endif //ALGORITMOS_RASTERIZACAO_UTILS_H
