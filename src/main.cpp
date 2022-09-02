@@ -1,119 +1,56 @@
 #include <iostream>
-#include <cstdlib>
-
-#define X_AXIS_SIZE 40
-#define Y_AXIS_SIZE 80
-#define PIXEL_CHAR 42
-#define SPACE_CHAR ' '
+#include "utils/utils.h"
+#include "bresenham_line/bresenham_line.h"
+#include "dda_line/dda_line.h"
+#include "bresenham_circle/bresenham_circle.h"
+#include "polar_coordinate_circle/polar_coordinate_circle.h"
 
 using namespace std;
 
-void clearInputBuffer() {
-    int c;
-    while((c = getchar()) != '\n' && c != EOF) {}
-}
-
-void clearConsole() {
-    #ifdef WINDOWS
-        system("cls");
-    #else
-        // Assume POSIX
-        system("clear");
-    #endif
-}
-
-void printMenuOptions() {
-    cout << "\nEscolha o número referente ao desafio desejado:\n"
-            " (0) - Sair\n"
-            " (1) - Imprime uma reta (Algoritmo DDA)\n"
-            " (2) - Imprime uma reta (Algoritmo de Bresenham)\n"
-            " (3) - Imprime o traçado de um círculo (Teorema de Pitágoras)\n"
-            " (4) - Imprime o traçado de um círculo (Sistemas de coordenadas polares)\n"
-            " (5) - Imprime o traçado de um círculo (Algoritmo de Bresenham)\n" << endl;
-}
-
-int askUserOption() {
-    int input;
-    cout << "\nOpcao: ";
-    cin >> input;
-    return input;
-}
-
-void printCartesianPlane(char **matriz) {
-    printf("\n");
-
-    for (int i = 0; i < X_AXIS_SIZE; ++i) {
-        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
-            printf("%c", matriz[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\n");
-}
-
-char** generateDinamicMatrix() {
-    char **mat = static_cast<char **>(malloc(X_AXIS_SIZE * sizeof(char *)));
-    for (int i = 0; i < X_AXIS_SIZE; ++i) {
-        mat[i] = static_cast<char *>(malloc(Y_AXIS_SIZE * sizeof(char)));
-    }
-
-    return mat;
-}
-
-void cleanCartesianPlane(char** matriz) {
-    for (int i = 0; i < X_AXIS_SIZE; ++i) {
-        for (int j = 0; j < Y_AXIS_SIZE; ++j) {
-            matriz[i][j] = char(SPACE_CHAR);
-
-            if (i == X_AXIS_SIZE / 2) {
-                matriz[i][j] = char(45);
-            }
-
-            if (j == Y_AXIS_SIZE / 2) {
-                matriz[i][j] = '|';
-            }
-
-            if (i == X_AXIS_SIZE / 2 && j == Y_AXIS_SIZE / 2) {
-                matriz[i][j] = '+';
-            }
-        }
-    }
-}
-
-void waitEnterKeyToContinue() {
-    cout << "Press ENTER to continue..." << endl;
-    clearInputBuffer();
-    cin.get();
-}
-
 int init() {
     char **matriz = generateDinamicMatrix();
+
+    // Loop de controle
     while(true){
         clearConsole();
         printMenuOptions();
+
         switch (askUserOption()) {
             case 0:
+                // Finaliza o programa
                 return 0;
             case 1:
+                // Linha com DDA
                 cleanCartesianPlane(matriz);
+                useDDALine(matriz);
                 printCartesianPlane(matriz);
                 waitEnterKeyToContinue();
                 break;
             case 2:
-                cout << "Caso 2\n";
+                // Linha com Bresenham
+                cleanCartesianPlane(matriz);
+                useBresenhamLine(matriz);
+                printCartesianPlane(matriz);
+                waitEnterKeyToContinue();
                 break;
             case 3:
-                cout << "Caso 3\n";
+                // Círculo com Coordenadas Polares
+                cleanCartesianPlane(matriz);
+                usePolarCoordinateCircle(matriz);
+                printCartesianPlane(matriz);
+                waitEnterKeyToContinue();
                 break;
             case 4:
-                cout << "Caso 4\n";
-                break;
-            case 5:
-                cout << "Caso 5\n";
+                // Círculo com Bresenham
+                cleanCartesianPlane(matriz);
+                useBresenhamCircle(matriz);
+                printCartesianPlane(matriz);
+                waitEnterKeyToContinue();
                 break;
             default:
+                // Opção inválida
                 cout << "\nEssa opcao nao pode ser executada. Tente inserir uma opcao válida...\n";
+                waitEnterKeyToContinue();
         }
     }
 }
