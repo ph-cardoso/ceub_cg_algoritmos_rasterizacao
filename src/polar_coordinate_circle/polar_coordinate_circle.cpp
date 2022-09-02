@@ -1,26 +1,17 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-narrowing-conversions"
+#include <cmath>
 #include "polar_coordinate_circle.h"
 #include "../utils/utils.h"
 
 void polar_coordinate_circle(int xc, int yc, int r, char** matriz) {
-    int x, y, d;
+    float angle;
 
-    x = 0;
-    y = r;
-    d = 3 - 2 * r;
+    for (int i = 0; i < 100; i++) {
+        // ângulo
+        angle = i * 2 * (M_PI / 100);
 
-    drawSimetricPixels(xc, yc, x, y, matriz);
-
-    while(x <= y) {
-        if(d <= 0) {
-            d = d + 4 * x + 6;
-        } else {
-            d = d + 4 * x - 4 * y + 10;
-            y = y - 1;
-        }
-
-        x = x + 1;
-
-        drawSimetricPixels(xc, yc, x, y, matriz);
+        insertPixel(round(xc + (cos(angle) * r)), round(yc + (sin(angle) * r)), matriz);
     }
 }
 
@@ -33,3 +24,5 @@ void usePolarCoordinateCircle(char** matriz) {
 
     polar_coordinate_circle(xcentro, ycentro, raio, matriz);
 }
+
+#pragma clang diagnostic pop

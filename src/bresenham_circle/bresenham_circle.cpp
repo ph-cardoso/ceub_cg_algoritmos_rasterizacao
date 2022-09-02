@@ -2,26 +2,24 @@
 #include "../utils/utils.h"
 
 void bresenham_circle(int xc, int yc, int r, char** matriz) {
-    int x = 0, y = r;
+    int x = 0;
+    int y = r;
     int d = 3 - 2 * r;
-    drawSimetricPixels(xc, yc, x, y, matriz);
-    while (y >= x)
-    {
-        // for each pixel we will
-        // draw all eight pixels
 
+    drawSimetricPixels(xc, yc, x, y, matriz);
+
+    while (y >= x) {
+        // incremento de x
         x++;
 
-        // check for decision parameter
-        // and correspondingly
-        // update d, x, y
-        if (d > 0)
-        {
+        // parâmetro auxiliar 'd'
+        if (d > 0) {
             y--;
             d = d + 4 * (x - y) + 10;
-        }
-        else
+        } else {
             d = d + 4 * x + 6;
+        }
+
         drawSimetricPixels(xc, yc, x, y, matriz);
     }
 }
